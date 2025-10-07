@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 type User = {
@@ -14,7 +16,7 @@ type AuthContext = {
 
 const AuthCtx = createContext<AuthContext | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
+export default function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User>(null);
   const [loading, setLoading] = useState(true);
   
@@ -22,17 +24,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const raw = localStorage.getItem('user');
     if (raw) setUser(JSON.parse(raw));
     setLoading(false);
-  }, [])
+  }, []);
   
   const login = async (username: string, password: string) => {
     /* ЗДЕСЬ БУДЕТ КОД А ПОКА ЧТО ПУСТЬ БУДЕТ ТАК */
     const demoUser = { id: '1', name: username || 'User' };
-    localStorage.setItem('demo_user', JSON.stringify(demoUser));
-    return
+    localStorage.setItem('user', JSON.stringify(demoUser));
+    setUser(demoUser);
+    return true;
   };
   
   const logout = () => {
-    localStorage.removeItem('demo_user');
+    localStorage.removeItem('user');
     setUser(null);
   };
   
