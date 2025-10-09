@@ -1,63 +1,64 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
-
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-2xl text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         primary: `
-      bg-gradient-to-br from-emerald-400/70 to-cyan-500/70
-      text-white border border-white/20 backdrop-blur-md
-      shadow-[0_4px_15px_rgba(0,0,0,0.1)]
-      hover:from-emerald-400/80 hover:to-cyan-500/80
-      hover:shadow-[0_6px_20px_rgba(0,0,0,0.15)]
-      transition-all duration-300 ease-in-out transform hover:-translate-y-[2px]
-      active:translate-y-[1px]
-      dark:from-emerald-400/40 dark:to-cyan-500/40
-      dark:bg-gradient-to-br dark:hover:from-emerald-400/50 dark:hover:to-cyan-500/50
-      dark:border-white/10 dark:hover:border-white/20
-    `,
+          bg-gradient-to-br from-emerald-400/80 to-cyan-500/80
+          text-white border border-white/30 backdrop-blur-2xl
+          shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.2)]
+          hover:from-emerald-400/90 hover:to-cyan-500/90
+          hover:shadow-[0_12px_40px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.3)]
+          transition-all duration-300 ease-out transform hover:-translate-y-0.5
+          active:translate-y-0 active:scale-95
+          dark:from-emerald-400/60 dark:to-cyan-500/60
+          dark:border-white/20 dark:backdrop-blur-2xl
+        `,
         
         secondary: `
-      bg-white/15 text-white border border-white/30 backdrop-blur-md
-      shadow-[0_4px_10px_rgba(255,255,255,0.1)]
-      hover:bg-white/25 hover:border-white/40 hover:shadow-[0_6px_18px_rgba(255,255,255,0.15)]
-      transition-all duration-300 transform hover:-translate-y-[2px]
-      dark:bg-white/10 dark:border-white/15 dark:hover:bg-white/15 dark:hover:border-white/25
-    `,
+          bg-white/20 text-white border border-white/30 backdrop-blur-2xl
+          shadow-[0_8px_32px_rgba(255,255,255,0.1),inset_0_1px_0_rgba(255,255,255,0.2)]
+          hover:bg-white/30 hover:border-white/40
+          hover:shadow-[0_12px_40px_rgba(255,255,255,0.15),inset_0_1px_0_rgba(255,255,255,0.3)]
+          transition-all duration-300 ease-out transform hover:-translate-y-0.5
+          dark:bg-white/15 dark:border-white/20
+        `,
         
         outline: `
-      border-2 border-white/30 text-white bg-transparent backdrop-blur-sm
-      hover:bg-white/10 hover:border-white/50 hover:shadow-[0_4px_12px_rgba(255,255,255,0.1)]
-      transition-all duration-300 transform hover:-translate-y-[2px]
-      dark:border-white/10 dark:hover:border-white/30 dark:hover:bg-white/5
-    `,
+          border-2 border-white/40 text-white bg-transparent backdrop-blur-xl
+          hover:bg-white/15 hover:border-white/60
+          hover:shadow-[0_8px_32px_rgba(255,255,255,0.1)]
+          transition-all duration-300 ease-out transform hover:-translate-y-0.5
+          dark:border-white/20 dark:hover:border-white/40
+        `,
         
         ghost: `
-      bg-transparent text-white hover:bg-white/10 hover:shadow-md
-      backdrop-blur-sm transition-all duration-200 ease-in-out
-      transform hover:-translate-y-[1px]
-      dark:hover:bg-white/5
-    `,
+          bg-transparent text-white hover:bg-white/15
+          backdrop-blur-xl transition-all duration-200 ease-out
+          transform hover:-translate-y-0.5
+          dark:hover:bg-white/10
+        `,
         
         glass: `
-      relative overflow-hidden bg-white/10 text-white border border-white/20 backdrop-blur-xl
-      shadow-[inset_0_0_10px_rgba(255,255,255,0.1)]
-      hover:bg-white/20 hover:border-white/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]
-      transform hover:-translate-y-[3px] transition-all duration-300 ease-in-out
-      dark:bg-white/5 dark:border-white/10 dark:hover:bg-white/10 dark:hover:border-white/20
-    `,
+          relative overflow-hidden bg-white/15 text-white border border-white/30 backdrop-blur-2xl
+          shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.2)]
+          hover:bg-white/25 hover:border-white/40
+          hover:shadow-[0_12px_40px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.3)]
+          transform hover:-translate-y-0.5 transition-all duration-300 ease-out
+          dark:bg-white/10 dark:border-white/20
+        `,
       },
       
       size: {
-        default: "h-11 px-6 py-3 text-base",
-        sm: "h-9 rounded-lg px-4 text-sm",
-        lg: "h-14 rounded-xl px-10 text-lg font-semibold",
-        icon: "h-11 w-11 rounded-xl",
+        default: "h-12 px-8 py-3 text-base",
+        sm: "h-10 rounded-xl px-5 text-sm",
+        lg: "h-14 rounded-2xl px-10 text-lg font-semibold",
+        icon: "h-12 w-12 rounded-2xl",
       },
     },
     defaultVariants: {
